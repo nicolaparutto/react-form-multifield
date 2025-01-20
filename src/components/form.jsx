@@ -3,10 +3,10 @@ import { useState } from 'react';
 const defaultArticle = {
    title: '',
    content: '',
-   image: '',
-   category: [],
+   category: '',
    tags: [],
-   state: ''
+   state: '',
+   image: ''
 };
 
 let articlesList = [];
@@ -18,6 +18,8 @@ function Form() {
    const handlerSubmit = (e) => {
       e.preventDefault();
       setArticles(articlesList.push(article))
+
+      setArticle(defaultArticle)
    }
    //nuovo articolo:
    const handlerNewArticle = (e) => {
@@ -70,6 +72,14 @@ function Form() {
                   <option value="Scuola e Istruzione">Scuola e Istruzione</option>
                   <option value="Viaggi e Turismo">Viaggi e Turismo</option>
                </select>
+               <input
+                  type="text"
+                  className='form-img'
+                  placeholder="Inserisci l'URL dell'immagine..."
+                  value={article.image}
+                  name='image'
+                  onChange={handlerNewArticle}
+               />
                <button className="btn form-btn" type="submit">Aggiungi Articolo</button>
             </div>
          </form>
@@ -78,10 +88,13 @@ function Form() {
             <h1>Articoli del blog</h1>
             {articlesList.map((article) => (
                <div key={article.id} className="article">
+                  <div className="article-image">
+                     <img src={article.image} alt="" />
+                  </div>
                   <div className="article-text">
-                     <h1>{article.title}</h1>
-                     <p>{article.content}</p>
-                     <span>{article.category}</span>
+                     <h2 className='article-title'>{article.title}</h2>
+                     <p className='article-content'>{article.content}</p>
+                     <span className='article-category'>Categoria: {article.category}</span>
                   </div>
                   <div
                      className="article-trash"
