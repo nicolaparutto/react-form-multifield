@@ -1,0 +1,77 @@
+/*css reset*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*main style*/
+body {
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+/* utility */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  background-color: green;
+  padding: 23px 25px;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(0, 68, 0);
+  }
+}
+
+/*form style*/
+.form-container {
+  margin-top: 50px;
+}
+
+form input {
+  width: 500px;
+  padding: 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  margin-right: 5px;
+}
+
+/* articles style */
+.articles-section {
+  margin-top: 50px;
+}
+
+.article {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #000;
+  border-radius: 8px;
+  margin-bottom: 20px;
+
+}
+
+.article-text {
+  padding-left: 15px;
+  width: 95%;
+}
+
+.article-trash {
+  text-align: center;
+  border-radius: 0px 8px 8px 0px;
+  width: 5%;
+  padding: 20px;
+  background-color: red;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(187, 0, 0);
+  }
+}

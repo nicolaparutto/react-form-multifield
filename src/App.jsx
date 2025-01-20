@@ -1,9 +1,8 @@
-function App() {
+import Form from './components/form'
 
+function App() {
   return (
-    <>
-      <h1>hello world!</h1>
-    </>
+    <Form />
   )
 }
 
