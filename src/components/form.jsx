@@ -43,6 +43,7 @@ function Form() {
       <div className="container form-container">
          <form action="" onSubmit={handlerSubmit}>
             <input
+               className='form-title'
                type="text"
                placeholder='Titolo...'
                name='title'
@@ -50,26 +51,23 @@ function Form() {
                onChange={handlerNewArticle}
                required
             />
-            <input
+            <textarea
                type="text"
-               placeholder="Inserisci il testo dell'articolo"
+               placeholder="Inserisci il testo dell'articolo..."
                name='content'
                value={article.content}
                onChange={handlerNewArticle}
                required
             />
-            <select name="category" id="category">
-               <option value="1">Intelligenza Artificiale</option>
-               <option value="2">Innovazioni Tecnologiche</option>
-               <option value="3">Software e App</option>
-               <option value="4">Moda e tendenze</option>
-               <option value="5">Scuola e Istruzione</option>
-               <option value="6">Viaggi e Turismo</option>
+            <select name="category" id="category" onChange={handlerNewArticle}>
+               <option value="Intelligenza Artificiale">Intelligenza Artificiale</option>
+               <option value="Innovazioni Tecnologiche">Innovazioni Tecnologiche</option>
+               <option value="Software e App">Software e App</option>
+               <option value="Moda e tendenze">Moda e tendenze</option>
+               <option value="Scuola e Istruzione">Scuola e Istruzione</option>
+               <option value="Viaggi e Turismo">Viaggi e Turismo</option>
             </select>
-
-
-
-            <button className="btn" type="submit">Genera</button>
+            <button className="btn" type="submit">Aggiungi Articolo</button>
          </form>
 
          <div className="articles-section">
@@ -78,6 +76,7 @@ function Form() {
                   <div className="article-text">
                      <h1>{article.title}</h1>
                      <p>{article.content}</p>
+                     <span>{article.category}</span>
                   </div>
                   <div
                      className="article-trash"
