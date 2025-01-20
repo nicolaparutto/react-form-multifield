@@ -34,17 +34,61 @@ body {
   margin-top: 50px;
 }
 
-form input {
-  width: 500px;
-  padding: 20px;
-  font-size: 1rem;
+form {
+  display: flex;
+  position: relative;
+  border: 2px solid red;
   border-radius: 8px;
-  margin-right: 5px;
+  padding: 10px;
+}
+
+form div:first-child {
+  margin-right: 20px;
+}
+
+.form-title {
+  display: block;
+  width: 200px;
+  padding: 12px;
+  font-size: 0.9rem;
+  border: 1px solid #000;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.form-textarea {
+  border: 1px solid #000;
+  border-radius: 8px;
+  width: 600px;
+  height: 400px;
+  padding: 12px;
+}
+
+.form-category-select {
+  padding: 12px;
+  border: 1px solid #000;
+  border-radius: 8px;
+}
+
+.select-title {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.form-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
 /* articles style */
 .articles-section {
-  margin-top: 50px;
+  margin-top: 100px;
+
+  h1 {
+    margin-bottom: 20px;
+  }
 }
 
 .article {
