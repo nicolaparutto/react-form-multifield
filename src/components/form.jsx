@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 const defaultArticle = {
-   id: '',
    title: '',
    content: '',
    image: '',
@@ -18,26 +17,25 @@ function Form() {
    const [articles, setArticles] = useState(articlesList);
    const handlerSubmit = (e) => {
       e.preventDefault();
-      //logica invio form
-      console.log(article)
       setArticles(articlesList.push(article))
-      console.log(articlesList)
    }
-
    //nuovo articolo:
    const handlerNewArticle = (e) => {
       let { name, value } = e.target;
 
       setArticle({
          ...article,
+         id: Date.now(),
          [name]: value
       })
    }
    //rimuovi articolo:
-   // const handlerRemoveArticle = (id) => {
-   //    const updatedArticleList = articlesList.filter(article => (article.id !== id))
-   //    setArticlesList(updatedArticleList)
-   // }
+   const handlerRemoveArticle = (id) => {
+      const updatedList = articlesList.filter(article => (article.id !== id
+      ))
+      articlesList = updatedList
+      setArticles(updatedList)
+   }
 
    return (
       <div className="container form-container">
@@ -78,7 +76,7 @@ function Form() {
 
          <div className="articles-section">
             <h1>Articoli del blog</h1>
-            {articlesList.map(article => (
+            {articlesList.map((article) => (
                <div key={article.id} className="article">
                   <div className="article-text">
                      <h1>{article.title}</h1>
