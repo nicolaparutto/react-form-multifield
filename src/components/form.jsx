@@ -1,4 +1,26 @@
+import { useState } from "react";
+
 function Form() {
+
+   const defaultPost = {
+      title: '',
+      image: '',
+      content: '',
+      category: '',
+      tags: [],
+      state: false
+   }
+
+   const [postData, setPostData] = useState(defaultPost)
+
+   const handlerNewPost = (e) => {
+      setPostData({
+         ...postData,
+         [e.target.name]: e.target.value
+      })
+      console.log(postData)
+   }
+
    return (
       <section className="container">
          <div className="form-container">
@@ -6,15 +28,35 @@ function Form() {
             <form action="">
                <div>
                   <h3>Titolo del post:</h3>
-                  <input type="text" placeholder="Titolo..." />
+                  <input
+                     type="text"
+                     placeholder="Titolo..."
+                     id="title"
+                     name="title"
+                     value={postData.title}
+                     onChange={handlerNewPost}
+                  />
                </div>
                <div>
                   <h3>Contenuto del post:</h3>
-                  <textarea name="" id="" placeholder="Contenuto..." />
+                  <textarea
+                     placeholder="Contenuto..."
+                     id="content"
+                     name="content"
+                     value={postData.content}
+                     onChange={handlerNewPost}
+                  />
                </div>
                <div>
                   <h3>Immagine del post:</h3>
-                  <input type="text" placeholder="Inserisci un URL immagine..." />
+                  <input
+                     type="text"
+                     placeholder="Inserisci un URL immagine..."
+                     id="image"
+                     name="image"
+                     value={postData.image}
+                     onChange={handlerNewPost}
+                  />
                </div>
                <div>
                   <h3>Categoria:</h3>
@@ -66,7 +108,7 @@ function Form() {
                   </div>
                </div>
                <div className="post-trash">
-                  <i class="fa-solid fa-trash"></i>
+                  <i className="fa-solid fa-trash"></i>
                </div>
             </div>
          </div>
