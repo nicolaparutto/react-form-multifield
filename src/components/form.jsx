@@ -52,6 +52,8 @@ function Form() {
          { id: self.crypto.randomUUID(), ...postData },
          ...postsList
       ])
+
+      setPostData(defaultPost)
    }
 
    const handlerRemove = (id) => {
