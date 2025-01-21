@@ -36,6 +36,11 @@ function Form() {
       ])
    }
 
+   const handlerRemove = (id) => {
+      const updatedList = postsList.filter(post => post.id !== id)
+      setPostsList(updatedList)
+   }
+
    useEffect(() => {
       //console.log(postData);
    }, [postData]);
@@ -136,13 +141,13 @@ function Form() {
                         <p>Pubblicato</p>
                      </div>
                   </div>
-                  <div className="post-trash">
+                  <div className="post-trash" onClick={() => handlerRemove(post.id)} >
                      <i className="fa-solid fa-trash"></i>
                   </div>
                </div>
             ))}
          </div>
-      </section>
+      </section >
 
    )
 }
