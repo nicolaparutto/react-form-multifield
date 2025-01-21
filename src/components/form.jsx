@@ -21,10 +21,28 @@ function Form() {
       if (e.target.name === 'category') {
          value = categories[e.target.value]
       }
-
+      if (e.target.type === 'checkbox') {
+         value = e.target.checked
+         console.log(value)
+      }
       setPostData({
          ...postData,
          [e.target.name]: value
+      })
+   }
+
+   const handlerAddTag = (e) => {
+
+      let { tags, ...others } = postData;
+      if (tags.includes(e.target.value)) {
+         tags = tags.filter(tag => tag !== e.target.value)
+      } else {
+         tags = [...tags, e.target.value]
+
+      }
+      setPostData({
+         tags,
+         ...others
       })
    }
 
@@ -96,21 +114,28 @@ function Form() {
                </div>
                <div className="form-tags">
                   <h3>Tags:</h3>
-                  <input type="checkbox" />
-                  <label htmlFor="">HTML</label>
-                  <input type="checkbox" />
-                  <label htmlFor="">CSS</label>
-                  <input type="checkbox" />
-                  <label htmlFor="">JavaScript</label>
-                  <input type="checkbox" />
-                  <label htmlFor="">React</label>
-                  <input type="checkbox" />
-                  <label htmlFor="">NodeJS</label>
+                  {tags.map(tag => (
+                     <div key={tag.id}>
+                        <input
+                           type="checkbox"
+                           id={tag.id}
+                           value={tag.name}
+                           onChange={handlerAddTag}
+                        />
+                        <label htmlFor="">{tag.name}</label>
+                     </div>
+                  ))}
                </div>
                <div className="form-state">
                   <h3>Stato:</h3>
-                  <input type="checkbox" />
-                  <label htmlFor="">Pubblicato</label>
+                  <input
+                     type="checkbox"
+                     id="state"
+                     name="state"
+                     checked={FormData.state}
+                     onChange={handlerNewPost}
+                  />
+                  <label htmlFor="">Pubblica Subito</label>
                </div>
                <button className="btn">Genera</button>
             </form>
@@ -121,7 +146,7 @@ function Form() {
             {postsList.map(post => (
                <div className="post" key={post.id}>
                   <div className="post-img">
-                     <img src={post.image} alt="immagine" />
+                     <img src={post.image} alt="post-img" />
                   </div>
                   <div className="post-text">
                      <h3>{post.title}</h3>
@@ -134,11 +159,11 @@ function Form() {
                      </div>
                      <div>
                         <h4>Tags:</h4>
-                        <p>Tags</p>
+                        <p>{post.tags.join(', ')}</p>
                      </div>
                      <div>
                         <h4>Stato:</h4>
-                        <p>Pubblicato</p>
+                        <p>{post.state ? "Post pubblico" : "Ancora da pubblicare"}</p>
                      </div>
                   </div>
                   <div className="post-trash" onClick={() => handlerRemove(post.id)} >
