@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { categories, tags } from "../data/formUtility";
+
 
 function Form() {
 
@@ -11,21 +13,38 @@ function Form() {
       state: false
    }
 
-   const [postData, setPostData] = useState(defaultPost)
+   const [postData, setPostData] = useState(defaultPost);
+   const [postsList, setPostsList] = useState([]);
 
    const handlerNewPost = (e) => {
+      let value = e.target.value;
+      if (e.target.name === 'category') {
+         value = categories[e.target.value]
+      }
+
       setPostData({
          ...postData,
-         [e.target.name]: e.target.value
+         [e.target.name]: value
       })
-      console.log(postData)
    }
+
+   const handlerSubmit = (e) => {
+      e.preventDefault()
+      setPostsList([
+         { id: self.crypto.randomUUID(), ...postData },
+         ...postsList
+      ])
+   }
+
+   useEffect(() => {
+      //console.log(postData);
+   }, [postData]);
 
    return (
       <section className="container">
          <div className="form-container">
             <h1>Aggiungi un nuovo post...</h1>
-            <form action="">
+            <form action="" onSubmit={handlerSubmit}>
                <div>
                   <h3>Titolo del post:</h3>
                   <input
@@ -60,11 +79,14 @@ function Form() {
                </div>
                <div>
                   <h3>Categoria:</h3>
-                  <select name="" id="">
-                     <option value="">Scegli una categoria</option>
-                     <option value="">Opzione 1</option>
-                     <option value="">Opzione 2</option>
-                     <option value="">Opzione 3</option>
+                  <select
+                     name="category"
+                     onChange={handlerNewPost}
+                  >
+                     <option>Scegli una categoria</option>
+                     {categories.map((category, index) => (
+                        <option key={index} value={index}>{category}</option>
+                     ))}
                   </select>
                </div>
                <div className="form-tags">
@@ -91,26 +113,34 @@ function Form() {
 
          <div className="posts-container">
             <h1>Posts del blog:</h1>
-            <div className="post">
-               <div className="post-img">
-                  <img src="" alt="immagine" />
-               </div>
-               <div className="post-text">
-                  <h3>Titolo</h3>
-                  <p>Contenuto....</p>
-               </div>
-               <div className="post-rest">
-                  <div>
-                     <p>Tags</p>
+            {postsList.map(post => (
+               <div className="post" key={post.id}>
+                  <div className="post-img">
+                     <img src={post.image} alt="immagine" />
                   </div>
-                  <div>
-                     <h4>Pubblicato</h4>
+                  <div className="post-text">
+                     <h3>{post.title}</h3>
+                     <p>{post.content}</p>
+                  </div>
+                  <div className="post-rest">
+                     <div>
+                        <h4>Categorie:</h4>
+                        <p>{post.category}</p>
+                     </div>
+                     <div>
+                        <h4>Tags:</h4>
+                        <p>Tags</p>
+                     </div>
+                     <div>
+                        <h4>Stato:</h4>
+                        <p>Pubblicato</p>
+                     </div>
+                  </div>
+                  <div className="post-trash">
+                     <i className="fa-solid fa-trash"></i>
                   </div>
                </div>
-               <div className="post-trash">
-                  <i className="fa-solid fa-trash"></i>
-               </div>
-            </div>
+            ))}
          </div>
       </section>
 
