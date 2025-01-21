@@ -13,5 +13,91 @@ body {
 /* utility */
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 50px auto;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  background-color: chocolate;
+  color: #fff;
+  padding: 15px 28px;
+
+  &:hover {
+    background-color: coral;
+  }
+}
+
+/*==form style==*/
+.form-container {
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 10px;
+
+  h1 {
+    text-decoration: underline;
+  }
+}
+
+form div {
+  margin: 30px 0px;
+}
+
+form input {
+  padding: 8px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+form textarea {
+  margin-top: 10px;
+  padding: 10px;
+  width: 400px;
+  height: 200px;
+  border: 1px solid #000;
+  border-radius: 8px;
+}
+
+form select {
+  margin-top: 10px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 8px;
+}
+
+.form-tags input {
+  margin: 10px 2px 10px 20px;
+}
+
+.form-state input {
+  margin: 10px 2px 10px 20px;
+}
+
+
+/*==posts style==*/
+.posts-container {
+  margin-top: 50px;
+
+  h1 {
+    text-decoration: underline;
+    margin-bottom: 20px;
+  }
+}
+
+.post {
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-rest {
+  display: flex;
+
+  div {
+    margin: 0px 10px;
+  }
 }
